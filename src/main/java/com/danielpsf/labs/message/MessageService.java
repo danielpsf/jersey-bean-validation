@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.ws.rs.NotFoundException;
 
+import com.danielpsf.labs.exception.CustomNotFoundException;
+
 public class MessageService {
 
     MessageStore messageStore = null;
@@ -19,7 +21,7 @@ public class MessageService {
     public Message get(Integer id) {
         Optional<Message> message = messageStore.getMessage(id);
         if(!message.isPresent()) {
-            throw new NotFoundException();
+            throw new CustomNotFoundException("Message not found");
         }
         return message.get();
     }
