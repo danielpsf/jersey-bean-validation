@@ -35,7 +35,7 @@ public class MessageController extends BaseController {
     
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(@Valid final Message message) throws URISyntaxException {
+    public Response save(@HasDukesPreffix @Valid final Message message) throws URISyntaxException {
         Message savedMessage = messageService.save(message);
         return Response.created(getCreatedResourceUri("message", savedMessage.getId()))
                        .entity(savedMessage)
